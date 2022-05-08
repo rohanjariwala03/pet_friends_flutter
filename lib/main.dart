@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pet_fitness_app/screens/auth_screens/login_screen.dart';
+import 'package:pet_fitness_app/screens/auth_screens/register_screen.dart';
+import 'package:pet_fitness_app/screens/auth_screens/reset_password_screen.dart';
 import 'package:pet_fitness_app/widgets/bottom_navigation_bar.dart';
 
 void main() {
@@ -14,18 +17,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const BottomNavigationBarWidget(),
+      routes: {
+        'login': (context) => const LoginScreen(),
+        'register': (context) => const RegisterScreen(),
+        'forgot': (context) => const ResetPasswordScreen(),
+      },
+      home: const LoginScreen(),
     );
   }
 }

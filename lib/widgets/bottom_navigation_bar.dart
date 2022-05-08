@@ -19,6 +19,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
             children: [
                const HomeScreen(),
                Container(color: Colors.orange,),

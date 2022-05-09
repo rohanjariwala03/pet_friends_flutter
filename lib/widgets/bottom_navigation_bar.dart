@@ -8,6 +8,8 @@ import 'package:pet_fitness_app/screens/home_screens/home_screen.dart';
 import 'package:pet_fitness_app/screens/profile_screens/my_account_screen.dart';
 import 'package:pet_fitness_app/screens/shop_screens/shop_screen.dart';
 
+import '../screens/profile_screens/my_account_detail_screen.dart';
+
 class BottomNavigationBarWidget extends StatefulWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
 
@@ -25,15 +27,13 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         length: 4,
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: TabBarView(
-            physics: const NeverScrollableScrollPhysics(),
+          body: const TabBarView(
+            physics: NeverScrollableScrollPhysics(),
             children: [
-               const HomeScreen(),
-               const ConnectionScreen(),
-               const ShopScreen(),
-               Container(
-                color: Colors.red,
-              ),
+               HomeScreen(),
+               ConnectionScreen(),
+               ShopScreen(),
+              ProfilePage(),
             ],
           ),
           appBar: AppBar(

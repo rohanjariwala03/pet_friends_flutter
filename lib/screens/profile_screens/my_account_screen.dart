@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pet_fitness_app/widgets/bottom_navigation_bar.dart';
 
 class MyAccountScreen extends StatefulWidget {
   const MyAccountScreen({Key? key}) : super(key: key);
@@ -24,7 +23,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
              Navigator.pop(context);
             },
             child: Padding(
-              padding: EdgeInsets.only(right: 10.0),
+              padding: const EdgeInsets.only(right: 10.0),
               child: Container(
                 width: 40,
                 height: 40,
@@ -43,7 +42,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(right: 10.0),
+              padding: const EdgeInsets.only(right: 10.0),
               child: Container(
                 width: 100,
                 height: 100,
@@ -114,7 +113,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                                mainAxisAlignment: MainAxisAlignment.center,
                                children: [
                                  Padding(
-                                   padding: EdgeInsets.only(right: 10.0),
+                                   padding: const EdgeInsets.only(right: 10.0),
                                    child: Container(
                                      width: 50,
                                      height: 50,
@@ -190,7 +189,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(right: 10.0),
+                                    padding: const EdgeInsets.only(right: 10.0),
                                     child: Container(
                                       width: 50,
                                       height: 50,

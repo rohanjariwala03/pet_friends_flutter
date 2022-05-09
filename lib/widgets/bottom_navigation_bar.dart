@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pet_fitness_app/screens/home_screen.dart';
-import 'package:pet_fitness_app/screens/my_account_screen.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
+import 'package:pet_fitness_app/getx/getx_variables.dart';
+import 'package:pet_fitness_app/screens/connection_screens/connection_screen.dart';
+import 'package:pet_fitness_app/screens/home_screens/home_screen.dart';
+import 'package:pet_fitness_app/screens/profile_screens/my_account_screen.dart';
+import 'package:pet_fitness_app/screens/shop_screens/shop_screen.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
@@ -12,6 +18,7 @@ class BottomNavigationBarWidget extends StatefulWidget {
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   @override
   Widget build(BuildContext context) {
+    GetVariables getVariablesController = Get.put(GetVariables());
     return  MaterialApp(
       color: Colors.yellow,
       home: DefaultTabController(
@@ -22,10 +29,8 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
             physics: const NeverScrollableScrollPhysics(),
             children: [
                const HomeScreen(),
-               Container(color: Colors.orange,),
-               Container(
-                color: Colors.lightGreen,
-              ),
+               const ConnectionScreen(),
+               const ShopScreen(),
                Container(
                 color: Colors.red,
               ),
@@ -33,9 +38,13 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
           ),
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            title: const Text(
-              "Home",
-              textAlign: TextAlign.start,
+            title: GetBuilder<GetVariables>(
+              builder: (controller) {
+                return Text(
+                  controller.appBarName,
+                  textAlign: TextAlign.start,
+                );
+              },
             ),
             actions: <Widget>[
               GestureDetector(
@@ -45,7 +54,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                   );
                 },
                 child: Padding(
-                  padding: EdgeInsets.only(right: 10.0),
+                  padding: const EdgeInsets.only(right: 10.0),
                   child: Container(
                     width: 35,
                     height: 35,
@@ -59,8 +68,8 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               )
             ],
           ),
-          bottomNavigationBar:  const TabBar(
-            tabs: [
+          bottomNavigationBar:  TabBar(
+            tabs: const [
               Tab(
                 icon:  Icon(Icons.dashboard),
               ),
@@ -72,6 +81,17 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               ),
               Tab(icon:  Icon(Icons.circle_notifications_rounded),)
             ],
+            onTap: (value){
+              if(value.toString() == "0") {
+                getVariablesController.changeAppBarName("Home");
+              } else if(value.toString() == "1"){
+                getVariablesController.changeAppBarName("Connections");
+              } else if(value.toString() == "2"){
+                getVariablesController.changeAppBarName("Shop");
+              } else if(value.toString() == "3"){
+                getVariablesController.changeAppBarName("Settings");
+              }
+            },
             labelColor: Colors.yellow,
             unselectedLabelColor: Colors.blue,
             indicatorSize: TabBarIndicatorSize.label,

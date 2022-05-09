@@ -12,7 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.purple,
+      //backgroundColor: Colors.purple,
       body: GoogleMap(
         initialCameraPosition:CameraPosition(
           target: LatLng(45.49558074871321, -73.5797448999033),

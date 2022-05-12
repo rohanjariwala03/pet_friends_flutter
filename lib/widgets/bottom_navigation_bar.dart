@@ -30,9 +30,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
           body: const TabBarView(
             physics: NeverScrollableScrollPhysics(),
             children: [
-               HomeScreen(),
-               ConnectionScreen(),
-               ShopScreen(),
+              HomeScreen(),
+              ConnectionScreen(),
+              ShopScreen(),
               ProfilePage(),
             ],
           ),

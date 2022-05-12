@@ -1,4 +1,9 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../getx/getx_variables.dart';
 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({Key? key}) : super(key: key);
@@ -52,12 +57,42 @@ class _ShopScreenState extends State<ShopScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Find the best\nproduct for you",
-                    style: TextStyle(
-                        color: Color(0xff465bd8),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Find the best\nproduct for you",
+                        style: TextStyle(
+                            color: Color(0xff465bd8),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.0),
+                      ),
+                      GetBuilder<GetVariables>(
+                      builder: (controller){
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Badge(
+                              padding: const EdgeInsets.all(5),
+                              position: BadgePosition.topEnd(),
+                              badgeContent:  Text(
+                                controller.cartCount.toString(),
+                                style: const TextStyle(
+                                    color: Colors.white, fontWeight: FontWeight.bold),
+                              ),
+
+                              badgeColor: Colors.amber,
+                              child: Icon(
+                                Icons.shopping_bag_rounded,
+                                size: 40,
+                                color: controller.cartCount.toString() == "0"
+                                    ?Colors.grey
+                                    : Colors.black,
+                              ),
+                            ),
+                          );
+                      }
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 15,
@@ -111,6 +146,7 @@ class _ShopScreenState extends State<ShopScreen> {
 
   // Widget wCategories() {
   Widget wItemList(BuildContext context) {
+    GetVariables getVariablesController = Get.put(GetVariables());
     var size = MediaQuery.of(context).size;
     return  ListView.builder(
         itemCount: 4,
@@ -164,7 +200,7 @@ class _ShopScreenState extends State<ShopScreen> {
                             FloatingActionButton(
                               backgroundColor: const Color(0xff465bd8),
                               onPressed: () {
-                                // cc.addToCart(controller.itemItems[index]);
+                                getVariablesController.increaseCartCount(1);
                               },
                               child: const Icon(
                                 // Foundation.shopping_cart,
